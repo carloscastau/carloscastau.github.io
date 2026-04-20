@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  children?: any;
+}
+
+const {
+  title = 'Carlos Castaño - Machine Learning Engineer & Data Science Leader',
+  description = 'Portafolio de Carlos Castaño, Machine Learning Engineer & Data Scientist con experiencia en liderazgo técnico. Sistemas de ML escalables, MLOps, y equipos de alto rendimiento.',
+  canonical,
+  ogImage = '/og-image.png',
+  children,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical || 'https://carloscastau.github.io'} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-50">
+    {children}
+
+    <!-- Google Analytics (opcional) -->
+    <!-- 
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+  </body>
+</html>

@@ -1,0 +1,56 @@
+---
+interface Props {
+  project: {
+    data: {
+      title: string;
+      description: string;
+      tags: string[];
+      githubUrl?: string;
+      caseStudyUrl?: string;
+    };
+  };
+}
+
+const { project } = Astro.props;
+const { title, description, tags, githubUrl, caseStudyUrl } = project.data;
+---
+
+<article class="project-card group">
+  <div class="card-content">
+    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+      {title}
+    </h3>
+    <p class="text-gray-600 mb-4 leading-relaxed">
+      {description}
+    </p>
+    <div class="flex flex-wrap mb-4">
+      {tags.map((tag: string) => <SkillTag skill={tag} />)}
+    </div>
+    <div class="flex gap-4">
+      {githubUrl && (
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-primary-600 hover:text-primary-800 font-medium transition-colors"
+        >
+          Código →
+        </a>
+      )}
+      {caseStudyUrl && (
+        <a
+          href={caseStudyUrl}
+          class="text-primary-600 hover:text-primary-800 font-medium transition-colors"
+        >
+          Caso de estudio →
+        </a>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200;
+  }
+</style>
